@@ -15,7 +15,8 @@ const login = (
         username: null,
         password: null,
         logged: false,
-        user: null
+        user: null,
+        remember: false
     }, action) => {
         
         switch(action.type){
