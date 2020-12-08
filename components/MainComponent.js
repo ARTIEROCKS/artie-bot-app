@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {connect} from 'react-redux';
+import * as SecureStore from 'expo-secure-store';
 
 import Login from '../screens/LoginComponent';
+import { addLoginServer, addLoginInfo, addRemember } from '../redux/login';
 
 const mapStateToProps = state => {
     return {
@@ -11,12 +13,43 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
+    addLoginServer: (server) => dispatch(addLoginServer(server)),
+    addLoginInfo: (username, password) => dispatch(addLoginInfo(username, password)),
+    addRemember: (remember) => dispatch(addRemember(remember))
 });
 
 class Main extends Component {
+
+    componentDidMount(){
+
+        //Getting the server information
+        SecureStore.getItemAsync('serverinfo')
+            .then((serverdata) => {
+                let serverinfo = JSON.parse(serverdata);
+                if(serverinfo){
+                    this.props.addLoginServer(serverinfo.server);
+                }
+            });
+        
+        //Getting the user information
+        SecureStore.getItemAsync('userinfo')
+            .then((userdata) => {
+                let userinfo = JSON.parse(userdata);
+                if(userinfo){
+                    this.props.addLoginInfo(userinfo.username, userinfo.password);
+                    this.props.addRemember(true);
+                }
+            });
+    }
+
     render(){
         return(
-            <Login login={this.props.login}/>
+            <Login 
+                login={this.props.login}
+                onLoginServerChange = {this.props.addLoginServer}
+                onLoginInfoChange = {this.props.addLoginInfo}
+                onRememberChange = {this.props.addRemember}
+            />
         );
     }
 }
