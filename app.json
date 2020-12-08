@@ -1,0 +1,12 @@
+{
+  "name": "artie-bot-app",
+  "displayName": "artie-bot-app",
+  "expo": {
+    "name": "artie-bot-app",
+    "slug": "artie-bot-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
