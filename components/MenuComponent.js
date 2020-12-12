@@ -8,15 +8,21 @@ import {Icon} from 'react-native-elements';
 import Home from '../screens/HomeScreen';
 
 const HomeNavigator = createStackNavigator(
-    { Home: { screen: Home } },
+    { Home: { screen: Home }},
     {
-        navigationOptions: ({ navigation }) => ({
-            headerStyle: { backgroundColor: "#512DA8" },
-            headerTitleStyle: { color: "#fff" }, headerTintColor: "fff",
-            headerLeft: <Icon name="menu" size={24}
-                color='white'
-                onPress={() => navigation.toggleDrawer()} />
-        })
+        defaultNavigationOptions: ({ navigation }) => {  
+            return {  
+                headerLeft: (  
+                    <Icon  
+                        style={{ paddingLeft: 10 }}  
+                        onPress={() => navigation.openDrawer()}
+                        type="font-awesome"
+                        name="bars"  
+                        size={30}  
+                    />  
+                )  
+            };  
+        }  
     }
 );
 
