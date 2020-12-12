@@ -1,23 +1,23 @@
-const ADD_LOGIN_SERVER = 'ADD_LOGIN_SERVER';
-const ADD_LOGIN_INFO = 'ADD_LOGIN_INFO';
-const ADD_LOGIN_USER_INFO = 'ADD_LOGIN_USER_INFO';
-const ADD_LOGIN_REMEMBER = 'ADD_LOGIN_REMEMBER';
+const LOGIN_ADD_SERVER = 'LOGIN_ADD_SERVER';
+const LOGIN_ADD_INFO = 'LOGIN_ADD_INFO';
+const LOGIN_ADD_USER_INFO = 'LOGIN_ADD_USER_INFO';
+const LOGIN_REMEMBER = 'LOGIN_REMEMBER';
 const LOGIN_FAILED = 'LOGIN_FAILED';
 const LOGIN_LOADING = 'LOGIN_LOADING';
 
 
 export const addLoginServer = (server) => ({
-    type: ADD_LOGIN_SERVER,
+    type: LOGIN_ADD_SERVER,
     payload: server
 });
 
 export const addLoginInfo = (username, password) => ({
-    type: ADD_LOGIN_INFO,
+    type: LOGIN_ADD_INFO,
     payload: {username: username, password: password}
 });
 
 export const addUserInfo = (user) => ({
-    type: ADD_LOGIN_USER_INFO,
+    type: LOGIN_ADD_USER_INFO,
     payload: user
 });
 
@@ -32,7 +32,7 @@ export const loginLoading = (loading) => ({
 });
 
 export const addRemember = (remember) => ({
-    type: ADD_LOGIN_REMEMBER,
+    type: LOGIN_REMEMBER,
     payload: remember
 });
 
@@ -65,13 +65,13 @@ const login = (
     }, action) => {
         
         switch(action.type){
-            case ADD_LOGIN_SERVER:
+            case LOGIN_ADD_SERVER:
                 return {...state, server: action.payload};
 
-            case ADD_LOGIN_INFO:
+            case LOGIN_ADD_INFO:
                 return {...state, username: action.payload.username, password: action.payload.password}
 
-            case ADD_LOGIN_USER_INFO:
+            case LOGIN_ADD_USER_INFO:
                 return {...state, user: action.payload}
 
             case LOGIN_FAILED:
@@ -80,7 +80,7 @@ const login = (
             case LOGIN_LOADING:
                 return {...state, loading: action.payload}
 
-            case ADD_LOGIN_REMEMBER:
+            case LOGIN_REMEMBER:
                 return {...state, remember: action.payload}
 
             default:

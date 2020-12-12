@@ -7,6 +7,7 @@ import {Icon} from 'react-native-elements';
 
 import * as Images from '../constants/Images';
 import Home from '../screens/HomeScreen';
+import Robot from '../screens/RobotScreen';
 
 const HomeNavigator = createStackNavigator(
     { Home: { screen: Home }},
@@ -27,8 +28,8 @@ const HomeNavigator = createStackNavigator(
     }
 );
 
-const TestNavigator = createStackNavigator(
-    { Test: { screen: Home }},
+const RobotNavigator = createStackNavigator(
+    { Robot: { screen: Robot }},
     {
         defaultNavigationOptions: ({ navigation }) => {  
             return {  
@@ -74,13 +75,13 @@ export const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-        Test: {
-            screen: TestNavigator,
+        Robot: {
+            screen: RobotNavigator,
             navigationOptions: {
-                title: 'Test',
-                drawerLabel: 'Test',
+                title: 'Robot List',
+                drawerLabel: 'Robot List',
                 drawerIcon: ({ tintColor, focused }) => (
-                    <Icon name="home" type="font-awesome" size={24} color={tintColor} />
+                    <Icon name="list-ul" type="font-awesome" size={24} color={tintColor} />
                 )
             }
         }
