@@ -80,13 +80,19 @@ class Login extends Component{
                             onPress={() => this.props.onRememberChange(!this.props.login.remember)}
                         />
                         <View style={styles.formButton}>
-                            {this.props.login.loading ? <Loading /> : 
-                            <Button
-                                title='Login'
-                                icon={<Icon name='sign-in' size={24} type='font-awesome' color='white' />}
-                                buttonStyle = {{ backgroundColor: argonTheme.COLORS['PRIMARY'] }}
-                                onPress = {() => this.handleLogin()}
-                            />}
+                            {this.props.login.loading ? 
+                                <Loading /> 
+                                : 
+                                <View>
+                                    {this.props.login.error !== null ? <Text style={styles.textError}>{this.props.login.error}</Text> : null}
+                                    <Button
+                                        title='Login'
+                                        icon={<Icon name='sign-in' size={24} type='font-awesome' color='white' />}
+                                        buttonStyle = {{ backgroundColor: argonTheme.COLORS['PRIMARY'] }}
+                                        onPress = {() => this.handleLogin()}
+                                    />
+                                </View>
+                            }
                             
                         </View>
                     </View>
@@ -115,6 +121,12 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold'
     },
+    textError : {
+        color: argonTheme.COLORS['ERROR'],
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginBottom: 20
+    },
     formInput: {
         margin: 20
     },
@@ -123,7 +135,10 @@ const styles = StyleSheet.create({
         backgroundColor: null
     },
     formButton: {
-        margin: 40
+        marginTop: 20,
+        marginBottom:40,
+        marginLeft: 40,
+        marginRight: 40
     }
 });
 
