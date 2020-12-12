@@ -14,25 +14,27 @@ class Login extends Component{
     }
 
     handleLogin(){
-        console.log(JSON.stringify(this.props.login));
+
         SecureStore.setItemAsync(
             'serverinfo',
             JSON.stringify({server: this.props.login.server})
         )
         .catch((error) => console.log('Could not save server info', error));
 
+        //Checks if the user wants to remember the login
         if(this.props.login.remember === true){
-            console.log("NOOOOO");
             SecureStore.setItemAsync(
                 'userinfo',
                 JSON.stringify({username: this.props.login.username, password: this.props.login.password})
             )
             .catch((error) => console.log('Could not save user info', error));
         }else{
-            console.log("YEEEEES");
             SecureStore.deleteItemAsync('userinfo')
                         .catch((error) => console.log('Could not delete user info', error));
         }
+
+        //Login action
+        this.props.onLoginArtie(this.props.login.server, this.props.login.username, this.props.login.password);
     }
 
     render(){

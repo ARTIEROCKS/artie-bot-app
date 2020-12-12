@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as SecureStore from 'expo-secure-store';
 
 import Login from '../screens/LoginComponent';
-import { addLoginServer, addLoginInfo, addRemember } from '../redux/login';
+import { addLoginServer, addLoginInfo, addRemember, loginArtie } from '../redux/login';
 
 const mapStateToProps = state => {
     return {
@@ -15,7 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     addLoginServer: (server) => dispatch(addLoginServer(server)),
     addLoginInfo: (username, password) => dispatch(addLoginInfo(username, password)),
-    addRemember: (remember) => dispatch(addRemember(remember))
+    addRemember: (remember) => dispatch(addRemember(remember)),
+    loginArtie : (server, username, password) => dispatch(loginArtie(server, username, password))
 });
 
 class Main extends Component {
@@ -49,6 +50,7 @@ class Main extends Component {
                 onLoginServerChange = {this.props.addLoginServer}
                 onLoginInfoChange = {this.props.addLoginInfo}
                 onRememberChange = {this.props.addRemember}
+                onLoginArtie = {this.props.loginArtie}
             />
         );
     }
