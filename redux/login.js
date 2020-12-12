@@ -4,6 +4,7 @@ const LOGIN_ADD_USER_INFO = 'LOGIN_ADD_USER_INFO';
 const LOGIN_REMEMBER = 'LOGIN_REMEMBER';
 const LOGIN_FAILED = 'LOGIN_FAILED';
 const LOGIN_LOADING = 'LOGIN_LOADING';
+const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
 
 
 export const addLoginServer = (server) => ({
@@ -34,6 +35,11 @@ export const loginLoading = (loading) => ({
 export const addRemember = (remember) => ({
     type: LOGIN_REMEMBER,
     payload: remember
+});
+
+export const logout = () => ({
+    type: LOGIN_LOGOUT,
+    payload: null
 });
 
 export const loginArtie = (server, username, password) => (dispatch) => {
@@ -82,6 +88,9 @@ const login = (
 
             case LOGIN_REMEMBER:
                 return {...state, remember: action.payload}
+
+            case LOGIN_LOGOUT:
+                return {...state, user: null}
 
             default:
                 return state;
