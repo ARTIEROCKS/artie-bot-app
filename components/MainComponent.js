@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import {connect} from 'react-redux';
 import * as SecureStore from 'expo-secure-store';
+import { createAppContainer } from 'react-navigation';
 
-import Login from '../screens/LoginComponent';
 import { addLoginServer, addLoginInfo, addRemember, loginArtie } from '../redux/login';
+import Login from '../screens/LoginScreen';
+import {MainNavigator} from './MenuComponent';
 
 const mapStateToProps = state => {
     return {
@@ -19,7 +21,13 @@ const mapDispatchToProps = dispatch => ({
     loginArtie : (server, username, password) => dispatch(loginArtie(server, username, password))
 });
 
+const AppContainer = createAppContainer(MainNavigator);
+
 class Main extends Component {
+
+    constructor(props){
+        super(props);
+    }
 
     componentDidMount(){
 
@@ -57,13 +65,9 @@ class Main extends Component {
             );
         }else{
             return(
-                <Login 
-                    login={this.props.login}
-                    onLoginServerChange = {this.props.addLoginServer}
-                    onLoginInfoChange = {this.props.addLoginInfo}
-                    onRememberChange = {this.props.addRemember}
-                    onLoginArtie = {this.props.loginArtie}
-                />
+                <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight }}>
+                    <AppContainer />
+                </View>
             );
         }
     }
