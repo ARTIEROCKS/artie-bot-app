@@ -44,15 +44,28 @@ class Main extends Component {
     }
 
     render(){
-        return(
-            <Login 
-                login={this.props.login}
-                onLoginServerChange = {this.props.addLoginServer}
-                onLoginInfoChange = {this.props.addLoginInfo}
-                onRememberChange = {this.props.addRemember}
-                onLoginArtie = {this.props.loginArtie}
-            />
-        );
+
+        if(this.props.login.user === null){
+            return(
+                <Login 
+                    login={this.props.login}
+                    onLoginServerChange = {this.props.addLoginServer}
+                    onLoginInfoChange = {this.props.addLoginInfo}
+                    onRememberChange = {this.props.addRemember}
+                    onLoginArtie = {this.props.loginArtie}
+                />
+            );
+        }else{
+            return(
+                <Login 
+                    login={this.props.login}
+                    onLoginServerChange = {this.props.addLoginServer}
+                    onLoginInfoChange = {this.props.addLoginInfo}
+                    onRememberChange = {this.props.addRemember}
+                    onLoginArtie = {this.props.loginArtie}
+                />
+            );
+        }
     }
 }
 

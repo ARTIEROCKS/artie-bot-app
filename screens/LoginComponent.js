@@ -45,7 +45,7 @@ class Login extends Component{
                 source={Images.RegisterBackground}
                 style={{ width, height, zIndex: 1 }}
             >
-                <ScrollView>
+                <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                     <View style={styles.container}>
                         <View style={styles.drawerHeader}>
                             <Text style={styles.drawerHeaderText}>Login</Text>
