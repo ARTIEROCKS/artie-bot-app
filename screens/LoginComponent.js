@@ -5,6 +5,8 @@ import * as SecureStore from 'expo-secure-store';
 import Images from '../constants/Images';
 import argonTheme from '../constants/Theme';
 
+import {Loading} from '../components/LoadingComponent';
+
 const { width, height } = Dimensions.get("screen");
 
 class Login extends Component{
@@ -78,12 +80,14 @@ class Login extends Component{
                             onPress={() => this.props.onRememberChange(!this.props.login.remember)}
                         />
                         <View style={styles.formButton}>
+                            {this.props.login.loading ? <Loading /> : 
                             <Button
                                 title='Login'
                                 icon={<Icon name='sign-in' size={24} type='font-awesome' color='white' />}
                                 buttonStyle = {{ backgroundColor: argonTheme.COLORS['PRIMARY'] }}
                                 onPress = {() => this.handleLogin()}
-                            />
+                            />}
+                            
                         </View>
                     </View>
                 </ScrollView>

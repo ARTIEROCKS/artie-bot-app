@@ -38,7 +38,7 @@ export const addRemember = (remember) => ({
 
 export const loginArtie = (server, username, password) => (dispatch) => {
 
-    console.log(server + '/api/v1/users/loginWithRole?userName=' + username + '&password=' + password);
+    dispatch(loginLoading(true));
     fetch(server + '/api/v1/users/loginWithRole?userName=' + username + '&password=' + password)
         .then(response => response.json())
         .then(data => {
@@ -46,8 +46,8 @@ export const loginArtie = (server, username, password) => (dispatch) => {
                 dispatch(loginFailed(data.body.message));
             }else{
                 dispatch(addUserInfo(data.body.object));
-                dispatch(loginLoading(false));
             }
+            dispatch(loginLoading(false));
         });
 }
 
@@ -76,6 +76,9 @@ const login = (
 
             case LOGIN_FAILED:
                 return {...state, error: action.payload}
+            
+            case LOGIN_LOADING:
+                return {...state, loading: action.payload}
 
             case ADD_LOGIN_REMEMBER:
                 return {...state, remember: action.payload}
