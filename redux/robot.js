@@ -28,7 +28,7 @@ export const removeRobot = (robot) => ({
 const robot = (
     state = {
         loading: false,
-        robots: []
+        robots: [{id: 1, name: 'NAO', type: 'NAO', ip: '192.168.0.53'}]
     },action) => 
 {
     switch(action.type){

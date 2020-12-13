@@ -28,8 +28,10 @@ class Robot extends Component{
     
     render(){
 
-        //Rendering the menu item
-        const renderMenuItem = ({item, index}) => {
+        const { navigate } = this.props.navigation;
+
+        //Rendering the robot item
+        const renderRobotItem = ({item, index}) => {
             const rightButton = [
                 {
                     text: 'Delete',
@@ -61,8 +63,9 @@ class Robot extends Component{
                     <ListItem
                         key={index}
                         title={item.name}
-                        subtitle={item.type}
+                        subtitle={'Type: ' + item.type + ' -  IP: ' + item.ip}
                         hideChevron={true}
+                        onPress={() => navigate('RobotDetails', { robot: item })}
                     />
                 </Swipeout>
             );
@@ -77,7 +80,7 @@ class Robot extends Component{
             return(
                 <FlatList
                     data={this.props.robot.robots}
-                    renderItem={renderMenuItem}
+                    renderItem={renderRobotItem}
                     keyExtractor={item => item.id.toString()}
                 />
             );

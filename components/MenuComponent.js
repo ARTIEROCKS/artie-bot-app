@@ -8,32 +8,34 @@ import {Icon} from 'react-native-elements';
 import * as Images from '../constants/Images';
 import Home from '../screens/HomeScreen';
 import Robot from '../screens/RobotScreen';
+import RobotDetails from '../screens/RobotDetailsScreen';
 
 const HomeNavigator = createStackNavigator(
     { Home: { screen: Home }},
     {
         defaultNavigationOptions: ({ navigation }) => {  
             return {  
-                headerLeft: (  
+                headerLeft: () =>  
                     <Icon  
                         style={{ paddingLeft: 10 }}  
                         onPress={() => navigation.openDrawer()}
                         type="font-awesome"
                         name="bars"  
                         size={30}  
-                    />  
-                )  
+                    />   
             };  
         }  
     }
 );
 
 const RobotNavigator = createStackNavigator(
-    { Robot: { screen: Robot }},
+    { Robot: { screen: Robot },
+      RobotDetails: { screen: RobotDetails }
+    },
     {
         defaultNavigationOptions: ({ navigation }) => {  
             return {  
-                headerLeft: (  
+                headerLeft: () => 
                     <Icon  
                         style={{ paddingLeft: 10 }}  
                         onPress={() => navigation.openDrawer()}
@@ -41,7 +43,7 @@ const RobotNavigator = createStackNavigator(
                         name="bars"  
                         size={30}  
                     />  
-                )  
+                  
             };  
         }  
     }
