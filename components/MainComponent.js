@@ -10,7 +10,8 @@ import {MainNavigator} from './MenuComponent';
 
 const mapStateToProps = state => {
     return {
-        login: state.login
+        login: state.login,
+        robot: state.robot
     }
 }
 
